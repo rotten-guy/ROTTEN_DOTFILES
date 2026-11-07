@@ -199,6 +199,7 @@
 - [x] ASUS PCE-AX1800 (MediaTek MT7921, `mt7921e` in the kernel): Wi-Fi and Bluetooth work without extra drivers (Bluetooth needs the card's USB cable on an internal USB 2.0 header)
 - [x] Ly had replaced SDDM as display manager on the desktop: SDDM re-enabled; `check-rice.sh` now checks `display-manager.service`
 - [x] Wi-Fi on the 5 GHz band
+- [x] Bone conduction headset (X500) paired with `bluetoothctl` and set as the default output (`wpctl set-default <sink-id>`), see `docs/arch-notes.md`
 
 ### 🔄 Serpantinum 2.3.0
 - [x] Fingerprint unlock is now built into the lock screen (`/etc/pam.d/serpantinum`): `patch-lock.py` and `check-rice.sh` detect it and skip the patch
