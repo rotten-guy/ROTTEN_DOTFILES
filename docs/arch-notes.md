@@ -10,6 +10,7 @@ Short, tested recipes collected while building this rice. Replace the `<placehol
 - [Dark mode for GTK apps (Nautilus…)](#dark-mode-for-gtk-apps-nautilus)
 - [Fingerprint reader](#fingerprint-reader)
 - [Instant file search (everythingx)](#instant-file-search-everythingx)
+- [Pair Bluetooth headphones from the terminal](#pair-bluetooth-headphones-from-the-terminal)
 - [Re-pair a ZMK Bluetooth keyboard](#re-pair-a-zmk-bluetooth-keyboard)
 - [Switch from Serpantinum to another shell (Caelestia)](#switch-from-serpantinum-to-another-shell-caelestia)
 - [Debian / Kali with a GUI on Windows (WSL)](#debian--kali-with-a-gui-on-windows-wsl)
@@ -138,6 +139,45 @@ journalctl -u everythingxd -f
 - Search from the terminal: `everythingx -name <term>` (or `ev`).
 - Drives mounted with `ntfs-3g` (FUSE) are indexed, but changes on them aren't picked up in real time. Unmounted drives aren't indexed at all.
 - Don't paste shell commands with a trailing `# comment` into an interactive zsh: without `setopt interactive_comments`, the `#` is passed to the command as an argument.
+
+## Pair Bluetooth headphones from the terminal
+
+There is no Bluetooth pairing menu under Hyprland here: use `bluetoothctl`. Put the headphones in pairing mode first (usually: hold the power button until the LED blinks in two colors).
+
+```bash
+bluetoothctl
+```
+
+then, one line at a time:
+
+```
+power on
+agent on
+default-agent
+scan on
+```
+
+When the headphones show up (`[NEW] Device <MAC> <name>`):
+
+```
+scan off
+pair <MAC>
+trust <MAC>
+connect <MAC>
+exit
+```
+
+- `Failed to pair: org.bluez.Error.AlreadyExists`: an old pairing is left over. `remove <MAC>`, wait for the device to show up again in the scan, then `pair` again.
+- `trust` lets the headphones reconnect by themselves later.
+
+Then make them the default output. `wpctl set-default` takes the **number** shown in front of the headphones under *Audio → Sinks*, not the Bluetooth address, and that number changes at each connection:
+
+```bash
+wpctl status
+wpctl set-default <sink-number>
+```
+
+The `*` in `wpctl status` marks the default output. The "Music" sink (`10-nebula-mixer.conf`) follows the default output, so it switches too. An app that keeps playing on the old output picks up the new one after a pause or a restart.
 
 ## Re-pair a ZMK Bluetooth keyboard
 
