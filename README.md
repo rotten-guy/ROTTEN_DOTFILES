@@ -115,6 +115,7 @@ dotfiles/
 │   ├── usr/local/bin/suspend-hyprland.sh
 │   ├── etc/sddm.conf.d/        # enables the nebula theme
 │   ├── usr/share/sddm/themes/nebula/
+│   ├── usr/share/wayland-sessions/hyprland-direct.desktop  # desktop: Hyprland without safe mode
 │   └── var/lib/bluetooth/      # pairings (only valid on this machine)
 ├── packages/<machine>/          # per machine: rotten-laptop, rotten-desktop
 │   ├── pacman.txt              # installed official packages

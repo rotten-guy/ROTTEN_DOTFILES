@@ -247,6 +247,8 @@
 - [ ] If it still crashes, one at a time: (1) GameMode raising the GPU to `high` only while playing (`gamemode` + `lib32-gamemode`, `~/.config/gamemode.ini` with `[gpu] apply_gpu_optimisations=accept-responsibility`, `gpu_device=1`, `amd_performance_level=high`, launch option `gamemoderun %command%`); (2) test without the `nvidia-like.glsl` screen shader (the maintainer prefers to keep it for now); (3) a hardware fault of the card
 - [ ] When the game freezes without crashing the session: `journalctl -k -b | grep -E "amdgpu.*(timeout|reset|fault)"`; no line = not the GPU (look at network / CPU)
 - [ ] Once stable: save `/etc/kernel/cmdline` in `backup-rice.sh`
+- [x] Safe mode disabled on the desktop: "Hyprland (no safe mode)" session (`system/rotten-desktop/usr/share/wayland-sessions/hyprland-direct.desktop`, `Exec=Hyprland` instead of `start-hyprland`), picked once in SDDM. A crash now goes back to the login screen. A new file, so Hyprland updates don't overwrite it (unlike `hyprland.desktop`)
+- [ ] Hide the "started without start-hyprland" warning, once the option name is confirmed with `hyprctl getoption`
 
 ### ⌨️ Lily58 wishes
 - [x] Typeractive answered: hotswap confirmed, no under-key RGB (battery), dongle "not supported natively" by their PCB. A ZMK dongle only needs a third board and new firmware on the halves (`docs/zmk-dongle.md`), not PCB support, so it stays possible (unofficial)
