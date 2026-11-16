@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Hyprland (no safe mode)
+Comment=Hyprland started directly, without the start-hyprland watchdog: a crash goes back to the login screen instead of safe mode
+Exec=Hyprland
+Type=Application
+DesktopNames=Hyprland
